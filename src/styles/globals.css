@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { scroll-padding-top: 72px; }
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+body { @apply bg-ink text-slate-200 font-body antialiased; }
+:focus-visible { outline: 2px solid #22d3ee; outline-offset: 3px; }
+::selection { background: rgba(59,130,246,.4); }
+
+@layer components {
+  .glass { @apply bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl; }
+  .card-surface { @apply rounded-2xl border border-white/10 bg-gradient-to-br from-slate2 to-navy; }
+  .text-grad { @apply bg-grad-brand bg-clip-text text-transparent; }
+  .eyebrow { @apply font-mono text-xs tracking-[.2em] uppercase text-cyan2; }
+  .section-wrap { @apply mx-auto max-w-6xl px-[5vw] py-20 md:py-28; }
+  .btn { @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm transition hover:bg-white/10; }
+  .btn-primary { @apply btn border-transparent bg-grad-brand text-white; }
+  .tag { @apply inline-block rounded-full bg-violet/15 px-3 py-0.5 text-xs text-[#ddd6fe]; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+.flow-link { position: absolute; right: -12px; top: 50%; width: 12px; height: 2px; background: linear-gradient(90deg, #3b82f6, #22d3ee, #3b82f6); background-size: 200% 100%; animation: flow 1.4s linear infinite; }
+@keyframes flow { to { background-position: -200% 0; } }
+
+.beam { position: absolute; top: 0; width: 110px; height: 100%; background: linear-gradient(180deg, rgba(34,211,238,.28), transparent); transform-origin: top center; transform: translateX(-50%) rotate(var(--r, 0deg)); clip-path: polygon(40% 0, 60% 0, 100% 100%, 0 100%); animation: sway 6s ease-in-out infinite alternate; }
+@keyframes sway { from { transform: translateX(-50%) rotate(calc(var(--r, 0deg) - 6deg)); } to { transform: translateX(-50%) rotate(calc(var(--r, 0deg) + 6deg)); } }
+.orbit { transform: rotateX(70deg) rotateZ(0deg); animation: orbit 30s linear infinite; }
+@keyframes orbit { to { transform: rotateX(70deg) rotateZ(360deg); } }
+
+.step-glow { animation: stepglow 7.5s linear infinite; }
+@keyframes stepglow { 0%, 16% { border-color: rgba(34,211,238,.7); background-color: rgba(34,211,238,.1); } 22%, 100% { border-color: rgba(255,255,255,.1); background-color: #10182b; } }
+
+html, body { overflow-x: clip; }
+
+.flow-link-idle { position: absolute; right: -12px; top: 50%; width: 12px; height: 2px; background: rgba(255,255,255,.12); }
+.flow-vlink { background: linear-gradient(180deg, #3b82f6, #22d3ee, #3b82f6); background-size: 100% 200%; animation: flowv 1.2s linear infinite; }
+@keyframes flowv { to { background-position: 0 -200%; } }
